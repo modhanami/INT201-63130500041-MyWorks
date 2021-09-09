@@ -1,0 +1,132 @@
+// function Person(name) {
+  // this.name = name;
+  // this.greeting = function () {
+  //   console.log(`Hi! I'm ${this.name}`);
+  // }
+// }
+
+// Refactor Person
+// Person.prototype.greeting = function () {
+  // console.log(`Hi! I'm ${this.name}`);
+// }
+
+// Student inherits from Person
+// function Student(name, age) {
+  // debugger;
+  // this.age = age;
+  // Person.call(this, name);
+  // this.greeting = function () {
+  //   console.log(`Hi! I'm ${this.name} and I'm ${this.age} years old`);
+  // }
+// }
+
+// Student.prototype = Object.create(Person.prototype);
+// Student.prototype.constructor = Student;
+// Student.prototype.greeting = function () {
+//   console.log(`Hi, I'm ${this.name}. im a student`);
+// };
+// console.log(Student.prototype);
+// console.log(Student.prototype.__proto__);
+// console.log(Person.prototype); 
+
+// const a = new Person('a');
+// const b = new Person('b');
+// const stdA = new Student('stdA', 20);
+// const stdB = new Student('stdB', 21);
+
+// const bucket = Object.create({
+//   hello: function () {
+//     console.log('hello');
+//   }
+// })
+
+// bucket2 = {
+//   name: 123,
+//   hello: function () {
+//     console.log(this.name);
+//   },
+//   __proto__: {
+//     hello: function () {
+//       console.log(this.name);
+//     },
+//   },
+//   nested: {
+//     name2: this.name,
+//     hello: function () {
+//       console.log(this.name2);
+//     },
+//   },
+// }
+
+// bucket3 = Object.assign({}, bucket2);
+// bucket3.name = 456;
+
+// console.log(a);
+// console.log(b);
+// console.log(stdA);
+// console.log(stdB);
+// stdA.greeting();
+
+// console.log(Person.prototype);
+// console.log(a.__proto__)
+// const abcA = new abc();
+// console.log(abc.prototype.__proto__)
+// console.log(abcA.__proto__.__proto__)
+// console.log(abc.prototype == abcA.__proto__)
+
+// function Shape(name, sides, sideLength) {
+//   this.name = name;
+//   this.sides = sides;
+//   this.sideLength = sideLength;
+// }
+
+// // Write your code below here
+// Shape.prototype.calcPerimeter = function() {
+//   console.log(this.sides * this.sideLength);
+// };
+
+// const square = new Shape('square', 4, 5);
+// square.calcPerimeter();
+
+// const triangle = new Shape('triangle', 3, 3);
+// triangle.calcPerimeter();
+
+// const asd = Object.create(Shape);
+// const aaa = new asd();
+
+class Person {
+  #name
+  constructor(name) {
+    this.#name= name;
+    console.log(this.getLength());
+  }
+
+  get name() {
+    return this.#name;
+  }
+  set name(name) {
+    this.#name = name;
+  }
+  getLength() {
+    return this.#name;
+  }
+
+  static getPrivateName(person) {
+    return person.#name;
+  }
+}
+
+// const getPrivateName = (person) => {
+//   return person.#name;
+// }
+
+const a = new Person('a');
+// a.getLength();
+// a.name
+console.log(a.name)
+// a.name = 123;
+console.log(Person)
+console.log(a)
+// console.log(getPrivateName(a))
+console.log(Person.getPrivateName(a))
+// console.log(a.#_name)
