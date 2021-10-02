@@ -1,38 +1,55 @@
-// function Person(name) {
-  // this.name = name;
-  // this.greeting = function () {
-  //   console.log(`Hi! I'm ${this.name}`);
-  // }
-// }
+function Person(name) {
+  this.name = name;
+  this.greeting = function () {
+    console.log(`Person ${this.name}: boing boing`);
+  }
+}
 
-// Refactor Person
-// Person.prototype.greeting = function () {
-  // console.log(`Hi! I'm ${this.name}`);
-// }
+Person.prototype.greeting = function () {
+  console.log(`Person ${this.name}: boing boing but from the prototype`);
+}
 
-// Student inherits from Person
-// function Student(name, age) {
+function Student(name, age) {
   // debugger;
-  // this.age = age;
-  // Person.call(this, name);
-  // this.greeting = function () {
-  //   console.log(`Hi! I'm ${this.name} and I'm ${this.age} years old`);
-  // }
-// }
+  Person.call(this, name); // pass on the this content to the Person constructor
+  this.age = age;
+  this.greeting = function () {
+    console.log(`Student ${this.name}, ${this.age}: H`);
+  }
+}
 
-// Student.prototype = Object.create(Person.prototype);
-// Student.prototype.constructor = Student;
-// Student.prototype.greeting = function () {
-//   console.log(`Hi, I'm ${this.name}. im a student`);
-// };
-// console.log(Student.prototype);
-// console.log(Student.prototype.__proto__);
-// console.log(Person.prototype); 
+Student.prototype = Object.create(Person.prototype); // the same as Student.prototype.__proto__ = Person.prototype;
+Student.prototype.constructor = Student;
+Student.prototype.greeting = function greetingStudent() {
+  console.log(`Student ${this.name}, ${this.age}: H but from the prototype`);
+};
 
-// const a = new Person('a');
-// const b = new Person('b');
-// const stdA = new Student('stdA', 20);
-// const stdB = new Student('stdB', 21);
+console.log(Student.prototype, 'Student.prototype');
+
+// rewrite below console.log() but swap 2 arguments for each line;
+console.log(Person.prototype, 'Person.prototype');
+console.log(Student.prototype, 'Student.prototype');
+console.log(Student.prototype.__proto__ === Person.prototype, 'Student.prototype.__proto__ === Person.prototype');
+
+const pA = new Person('pA');
+const pB = new Person('pB');
+const stdA = new Student('stdA', 20);
+const stdB = new Student('stdB', 21);
+
+console.log(pA);
+console.log(pB);
+console.log(stdA);
+console.log(stdB);
+console.log('stdA.greeting()'); 
+stdA.greeting();
+
+// console.log(Person.prototype);
+// console.log(a.__proto__)
+// const abcA = new abc();
+// console.log(abc.prototype.__proto__)
+// console.log(abcA.__proto__.__proto__)
+// console.log(abc.prototype == abcA.__proto__)
+
 
 // const bucket = Object.create({
 //   hello: function () {
@@ -61,19 +78,6 @@
 // bucket3 = Object.assign({}, bucket2);
 // bucket3.name = 456;
 
-// console.log(a);
-// console.log(b);
-// console.log(stdA);
-// console.log(stdB);
-// stdA.greeting();
-
-// console.log(Person.prototype);
-// console.log(a.__proto__)
-// const abcA = new abc();
-// console.log(abc.prototype.__proto__)
-// console.log(abcA.__proto__.__proto__)
-// console.log(abc.prototype == abcA.__proto__)
-
 // function Shape(name, sides, sideLength) {
 //   this.name = name;
 //   this.sides = sides;
@@ -94,21 +98,24 @@
 // const asd = Object.create(Shape);
 // const aaa = new asd();
 
-class Person {
+class PersonPvt {
   #name
+
   constructor(name) {
     this.#name= name;
-    console.log(this.getLength());
+    console.log(this.getName(), `this.getName()`);
   }
 
   get name() {
     return this.#name;
   }
+
   set name(name) {
     this.#name = name;
   }
-  getLength() {
-    return this.#name;
+
+  getName() {
+    return this.name;
   }
 
   static getPrivateName(person) {
@@ -120,13 +127,13 @@ class Person {
 //   return person.#name;
 // }
 
-const a = new Person('a');
+const aPvt = new PersonPvt('a');
 // a.getLength();
 // a.name
-console.log(a.name)
+console.log(aPvt.name, `aPvt.name`)
 // a.name = 123;
-console.log(Person)
-console.log(a)
-// console.log(getPrivateName(a))
-console.log(Person.getPrivateName(a))
+// console.log(PersonPvt, `PersonPvt`)
+console.log(aPvt, `aPvt`)
+// console.log(getPrivateName(a), `getPrivateName(a)`)
+console.log(PersonPvt.getPrivateName(aPvt), `PersonPvt.getPrivateName(aPvt)`)
 // console.log(a.#_name)
