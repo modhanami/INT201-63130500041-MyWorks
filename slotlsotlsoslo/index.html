@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .btn {
+      border-radius: 4em;
+      font-size: 3vw;
+      padding: .4em 1.2em;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .btn-spin {
+      --depth-y: 6px;
+      transition: .1s ease-out;
+      color: rgb(67, 86, 110);
+      box-shadow: 0 0 64px rgba(255, 255, 255, 0.15)
+      , 0 var(--depth-y) 0 rgba(255, 255, 255, .7);
+      margin-bottom: .6em;
+    }
+
+    .btn-spin:focus {
+      box-shadow: 0 0 64px rgba(255, 255, 255, 0.15)
+      , 0 var(--depth-y) 0 rgba(255, 255, 255, .4)
+      , 0 0 2px 4px rgb(11, 255, 174);
+    }
+
+    .btn-spin:active {
+      transform: translateY(var(--depth-y));
+      box-shadow: 0 0 8px rgb(255, 255, 255, .3);
+      transition: .0s;
+    }
+
+    .btn-red {
+      --depth-y: 6px;
+      transition: .1s ease-out;
+      box-shadow: 0 var(--depth-y) 0 rgba(180, 34, 83, 0.897);
+      background: rgb(228, 33, 75);
+      color: white;
+    }
+
+    .btn-red:active {
+      transform: translateY(var(--depth-y));
+      box-shadow: none;
+      transition: .0s;
+    }
+
+    .container {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(100vw, 1024px);
+      height: 100vh;
+      text-align: center;
+      font-weight: bold;
+      color: #fff;
+      padding: .5em 1.5em;
+    }
+
+    #slot {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #result {
+      font-size: min(64px, 10vw);
+      margin-bottom: 1em;
+    }
+
+    .reel {
+      width: min(80px, 10vw);
+      height: 80px;
+      display: inline-block;
+    }
+
+    .d-none {
+      display: none;
+    }
+  </style>
+</head>
+
+<body style="background-color: rgb(4, 4, 8);">
+
+  <div class="container">
+    <div id="slot">
+      <div id="result">ㅤ</div>
+      <input type="button" value="BRRR" class="btn btn-spin" id="btn-spin"><br>
+      <input type="button" value="BRRR 100x" class="btn btn-spin" id="btn-spin-x">
+      <input type="button" value="X" class="btn btn-red" id="btn-stop-spin-x">
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+
+</html>
